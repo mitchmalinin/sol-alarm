@@ -81,6 +81,14 @@ export function useAlarms() {
     setRingingAlarmId(null)
   }
 
+  const toggleAlarm = (id: string) => {
+    setAlarms(
+      alarms.map((alarm) =>
+        alarm.id === id ? { ...alarm, isActive: !alarm.isActive } : alarm
+      )
+    )
+  }
+
   return {
     alarms,
     addAlarm,
@@ -89,5 +97,6 @@ export function useAlarms() {
     stopAlarm,
     isAlarmRinging,
     ringingAlarmId,
+    toggleAlarm,
   }
 }

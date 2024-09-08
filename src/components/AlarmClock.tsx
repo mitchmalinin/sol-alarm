@@ -17,6 +17,7 @@ export default function AlarmClock() {
     stopAlarm,
     isAlarmRinging,
     ringingAlarmId,
+    toggleAlarm,
   } = useAlarms()
 
   return (
@@ -47,7 +48,7 @@ export default function AlarmClock() {
             <AlarmList
               alarms={alarms}
               onDeleteAlarm={deleteAlarm}
-              onSnoozeAlarm={snoozeAlarm}
+              onToggleAlarm={toggleAlarm}
             />
           </>
         )}

@@ -1,4 +1,4 @@
-export function formatTime(time: string) {
+export function formatTime(time: string): string {
   const [hours, minutes] = time.split(':')
   const hour = parseInt(hours, 10)
   const ampm = hour >= 12 ? 'PM' : 'AM'

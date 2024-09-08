@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 interface CountdownTimerProps {
   duration: number
@@ -11,33 +11,39 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   onComplete,
   onTick,
 }) => {
-  const [timeLeft, setTimeLeft] = useState(duration)
+  const startTimeRef = useRef<number | null>(null)
+  const requestRef = useRef<number | null>(null)
+
+  const animate = useCallback(
+    (timestamp: number) => {
+      if (startTimeRef.current === null) {
+        startTimeRef.current = timestamp
+      }
+
+      const elapsed = timestamp - startTimeRef.current
+      const timeLeft = Math.max(duration - elapsed / 1000, 0)
+
+      onTick(timeLeft)
+
+      if (timeLeft > 0) {
+        requestRef.current = requestAnimationFrame(animate)
+      } else {
+        onComplete()
+      }
+    },
+    [duration, onComplete, onTick]
+  )
 
   useEffect(() => {
-    if (timeLeft <= 0) {
-      onComplete()
-      return
+    requestRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (requestRef.current !== null) {
+        cancelAnimationFrame(requestRef.current)
+      }
     }
+  }, [animate])
 
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => {
-        const newTime = prevTime - 1
-        onTick(newTime)
-        return newTime
-      })
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [timeLeft, onComplete, onTick])
-
-  return (
-    <div className="w-full h-full rounded-full border-4 border-blue-500">
-      <div
-        className="h-full rounded-full bg-blue-500 transition-all duration-1000 ease-linear"
-        style={{ width: `${(timeLeft / duration) * 100}%` }}
-      ></div>
-    </div>
-  )
+  return null
 }
 
 export default CountdownTimer
