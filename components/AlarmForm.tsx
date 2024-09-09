@@ -89,7 +89,7 @@ export default function AlarmForm({ onSetAlarm }: AlarmFormProps) {
           </div>
         </PopoverTrigger>
         <PopoverContent
-          className="w-[320px]"
+          className="w-[320px] border-2 border-secondary bg-background rounded-lg shadow-lg overflow-hidden"
           side="bottom"
           align="center"
           sideOffset={-50}
@@ -102,7 +102,7 @@ export default function AlarmForm({ onSetAlarm }: AlarmFormProps) {
                 </div>
                 <input
                   type="text"
-                  className="px-3 py-2 pl-10 w-full rounded-md bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="px-3 py-2 pl-10 w-full rounded-md border border-secondary bg-muted focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="12"
                   value={hour}
                   onChange={(e) => {
@@ -122,7 +122,7 @@ export default function AlarmForm({ onSetAlarm }: AlarmFormProps) {
                 </div>
                 <input
                   type="text"
-                  className="px-3 py-2 pl-10 w-full rounded-md bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="px-3 py-2 pl-10 w-full rounded-md border border-secondary bg-muted focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="00"
                   value={minute}
                   onChange={(e) => {
@@ -140,7 +140,7 @@ export default function AlarmForm({ onSetAlarm }: AlarmFormProps) {
                 variant="outline"
                 size="sm"
                 onClick={togglePeriod}
-                className="w-16 h-10"
+                className="w-16 h-10 border border-secondary"
               >
                 {period === 'AM' ? (
                   <SunIcon className="w-5 h-5" />
@@ -151,7 +151,8 @@ export default function AlarmForm({ onSetAlarm }: AlarmFormProps) {
               <div className="text-sm text-muted-foreground">{period}</div>
             </div>
           </div>
-          <div className="flex justify-between p-4 border-t">
+          <div className="h-px bg-secondary" />
+          <div className="flex justify-between p-4">
             <Button
               variant="ghost"
               onClick={handleCancel}

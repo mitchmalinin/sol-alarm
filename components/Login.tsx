@@ -1,19 +1,24 @@
-'use client'
 import { usePrivy } from '@privy-io/react-auth'
+import { WalletIcon } from './icons'
+import { Button } from './ui/button'
 
 export default function Login() {
   const { login } = usePrivy()
 
   return (
-    <div className="text-center">
-      <h1 className="mb-6 text-4xl font-bold text-white">Alarm Clock App</h1>
-      <div className="space-y-4">
-        <button
-          onClick={login}
-          className="px-4 py-2 w-full font-bold text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Login with Privy
-        </button>
+    <div className="flex flex-col w-full min-h-screen bg-background">
+      <div className="flex flex-col flex-1 justify-center items-center p-4">
+        <div className="mb-8 text-4xl font-bold text-primary">
+          <span className="text-white">Welcome to </span>
+          <span className="text-primary">SolAlarm</span>
+        </div>
+        <div className="mb-8 text-xl text-center text-muted-foreground">
+          Connect your wallet to start actually waking up
+        </div>
+        <Button onClick={login} size="lg" className="flex items-center">
+          <WalletIcon className="mr-2 w-5 h-5" />
+          Connect Wallet
+        </Button>
       </div>
     </div>
   )
