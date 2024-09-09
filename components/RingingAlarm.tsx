@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ClockIcon, MoonIcon, SunIcon, XIcon } from './icons'
+import { ClockIcon, XIcon } from './icons'
 import { Button } from './ui/button'
 
 interface RingingAlarmProps {
@@ -79,13 +79,6 @@ export default function RingingAlarm({
               :{(timeLeft % 60).toString().padStart(2, '0')}
             </span>
           </div>
-          <span className="mt-2 text-2xl">
-            {ampm === 'AM' ? (
-              <SunIcon className="w-8 h-8 animate-pulse" />
-            ) : (
-              <MoonIcon className="w-8 h-8 animate-pulse" />
-            )}
-          </span>
         </div>
         <div className="absolute -top-4 left-1/2 px-4 py-2 rounded-full transform -translate-x-1/2 bg-background">
           <div className="flex gap-2 items-center text-lg font-semibold whitespace-nowrap text-primary">
