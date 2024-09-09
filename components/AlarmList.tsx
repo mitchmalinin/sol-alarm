@@ -1,6 +1,7 @@
 import { Alarm } from '../types/alarm'
 import { formatTime } from '../utils/timeUtils'
-import Switch from './ui/Switch'
+import { Button } from './ui/button'
+import { Switch } from './ui/switch'
 
 interface AlarmListProps {
   alarms: Alarm[]
@@ -15,11 +16,11 @@ export default function AlarmList({
 }: AlarmListProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold mb-4 text-blue-400">Alarms</h2>
+      <h2 className="mb-4 text-2xl font-semibold text-blue-400">Alarms</h2>
       {alarms.map((alarm) => (
         <div
           key={alarm.id}
-          className="flex items-center justify-between bg-gray-700 rounded-lg p-4 shadow-md"
+          className="flex justify-between items-center p-4 bg-gray-700 rounded-lg shadow-md"
         >
           <span className="text-xl text-gray-200">
             {formatTime(alarm.time)}
@@ -29,12 +30,13 @@ export default function AlarmList({
               checked={alarm.isActive}
               onCheckedChange={() => onToggleAlarm(alarm.id)}
             />
-            <button
-              className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full text-sm transition duration-300"
+            <Button
+              variant="destructive"
+              size="sm"
               onClick={() => onDeleteAlarm(alarm.id)}
             >
               Delete
-            </button>
+            </Button>
           </div>
         </div>
       ))}
