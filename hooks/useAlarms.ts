@@ -89,6 +89,11 @@ export function useAlarms() {
     )
   }
 
+  const triggerAlarmForTesting = () => {
+    setIsAlarmRinging(true)
+    setRingingAlarmId('test-alarm-id')
+  }
+
   return {
     alarms,
     addAlarm,
@@ -98,5 +103,6 @@ export function useAlarms() {
     isAlarmRinging,
     ringingAlarmId,
     toggleAlarm,
+    triggerAlarmForTesting,
   }
 }
