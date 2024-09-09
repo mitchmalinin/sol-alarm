@@ -38,6 +38,6 @@
     @apply border-primary/20;
   }
   .border-secondary {
-    @apply border-red-500;
+    @apply border-neutral-900;
   }
 }

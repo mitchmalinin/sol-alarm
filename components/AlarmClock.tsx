@@ -25,7 +25,7 @@ export default function AlarmClock() {
   } = useAlarms()
 
   const [devModeVisible, setDevModeVisible] = useState(false)
-  const [solBalance, setSolBalance] = useState(1.23)
+  const [solBalance] = useState(1.23)
 
   const { login, logout, authenticated } = usePrivy()
 
@@ -46,7 +46,7 @@ export default function AlarmClock() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-background">
       {/* Navigation Bar */}
-      <nav className="flex relative justify-between items-center p-4 bg-card">
+      <nav className="flex relative justify-between items-center p-4 bg-secondary">
         <Button variant="ghost" size="icon">
           <MenuIcon className="w-6 h-6" />
         </Button>
@@ -91,7 +91,7 @@ export default function AlarmClock() {
       ) : (
         <div className="overflow-y-auto flex-1 p-4">
           <AlarmForm onSetAlarm={addAlarm} />
-          <div className="my-4 border-t border-gray-800" />
+          <div className="my-4 border-t border-neutral-900" />
           <AlarmList
             alarms={formattedAlarms}
             onDeleteAlarm={deleteAlarm}
@@ -102,7 +102,7 @@ export default function AlarmClock() {
 
       {/* Developer mode toggle and trigger button */}
       {DEV_MODE_ENABLED && (
-        <div className="p-4 border-t border-gray-800 bg-card">
+        <div className="p-4 border-t border-neutral-900 bg-card">
           <Button
             variant="outline"
             size="sm"

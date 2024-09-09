@@ -55,7 +55,7 @@ export default function RingingAlarm({
             stroke="currentColor"
             strokeWidth="8"
             fill="transparent"
-            className="text-gray-800"
+            className="text-secondary"
           />
           <circle
             cx="128"
@@ -80,7 +80,7 @@ export default function RingingAlarm({
             </span>
           </div>
         </div>
-        <div className="absolute -top-4 left-1/2 px-4 py-2 rounded-full transform -translate-x-1/2 bg-background">
+        <div className="absolute -top-4 left-1/2 px-4 py-2 rounded-full transform -translate-x-1/2 bg-secondary">
           <div className="flex gap-2 items-center text-lg font-semibold whitespace-nowrap text-primary">
             <ClockIcon className="w-5 h-5 animate-bounce text-primary" />
             <span>{solAmount} SOL burns in</span>
