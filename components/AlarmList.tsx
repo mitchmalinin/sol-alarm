@@ -1,5 +1,5 @@
 import { Alarm } from '../types/alarm'
-import { formatTime } from '../utils/timeUtils'
+import { MoonIcon, SunIcon, TrashIcon } from './icons'
 import { Button } from './ui/button'
 import { Switch } from './ui/switch'
 
@@ -15,27 +15,38 @@ export default function AlarmList({
   onToggleAlarm,
 }: AlarmListProps) {
   return (
-    <div className="space-y-4">
-      <h2 className="mb-4 text-2xl font-semibold text-blue-400">Alarms</h2>
+    <div className="mt-8 space-y-4">
+      <h2 className="mb-4 text-2xl font-semibold text-primary">Alarms</h2>
       {alarms.map((alarm) => (
         <div
           key={alarm.id}
-          className="flex justify-between items-center p-4 bg-gray-700 rounded-lg shadow-md"
+          className="flex justify-between items-center p-4 rounded-lg shadow-md bg-muted"
         >
-          <span className="text-xl text-gray-200">
-            {formatTime(alarm.time)}
-          </span>
+          <div className="flex items-center space-x-4">
+            <span className="text-3xl font-bold text-primary">
+              {alarm.time.split(' ')[0]}
+            </span>
+            <span className="text-xl text-muted-foreground">
+              {alarm.time.includes('AM') ? (
+                <SunIcon className="w-6 h-6" />
+              ) : (
+                <MoonIcon className="w-6 h-6" />
+              )}
+            </span>
+          </div>
           <div className="flex items-center space-x-2">
             <Switch
               checked={alarm.isActive}
               onCheckedChange={() => onToggleAlarm(alarm.id)}
+              className="data-[state=unchecked]:bg-gray-400"
             />
             <Button
-              variant="destructive"
+              variant="ghost"
               size="sm"
               onClick={() => onDeleteAlarm(alarm.id)}
+              className="hover:bg-red-100"
             >
-              Delete
+              <TrashIcon className="w-4 h-4 text-red-500" />
             </Button>
           </div>
         </div>
